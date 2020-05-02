@@ -18,3 +18,14 @@ p + geom_point(aes(population/10^6, total), size=0.5) +
 
 p + geom_hex(aes(population/10^6, total)) +
   geom_text(aes(population/10^6, total, label = abb), nudge_x = 1.5)
+
+# The above plot can also be achieved in a cleaner way by setting global asthetic
+# simplify code by adding global aesthetic
+p <- murders %>% ggplot(aes(population/10^6, total, label = abb))
+p + geom_point(size = 0.1) +
+  geom_text(nudge_x = 1)
+
+# local aesthetics override global aesthetics
+p + geom_point(size = 1) +
+  geom_text(aes(x = 10, y = 800, label = "Hello there!"))
+
