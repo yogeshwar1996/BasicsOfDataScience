@@ -57,9 +57,13 @@ p + geom_point(aes(col = region), size = 3) +
 
 # change line to dashed and dark grey, line under points, so render the line first and then the points
 # use lty to chnage line type
-p + 
+p = p + 
   geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") +
   geom_point(aes(col = region), size = 3)
 
 # Code: Change legend title
 p <- p + scale_color_discrete(name = "Region")    # capitalize legend title
+
+library(ggthemes)
+p + theme_economist()
+
