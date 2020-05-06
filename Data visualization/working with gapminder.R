@@ -1,6 +1,8 @@
+
 # load and inspect gapminder data
 library(dslabs)
 library(tidyverse)
+library(dplyr)
 data(gapminder)
 head(gapminder)
 
