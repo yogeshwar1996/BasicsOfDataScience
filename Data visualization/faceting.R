@@ -6,7 +6,7 @@
 library(dslabs)
 library(tidyverse)
 library(dplyr)
-data(gapminder)	data(gapminder)
+data(gapminder)
 
 # facet by continent and year
 filter(gapminder, year %in% c(1962, 2012)) %>%
