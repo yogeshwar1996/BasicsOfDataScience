@@ -1,7 +1,7 @@
 # MEAN
 beads <- rep(c("red", "blue"), times = c(2,3))
 beads
-mean(beads == "blue")
+
 # To find the probability of drawing a blue bead at random, you can use mean():
 # note: In R, applying the mean() function to a logical vector returns the proportion of elements that are TRUE. 
 mean(beads == "blue")
@@ -49,6 +49,29 @@ p_1 <- cyan / (cyan + magenta + yellow)
 p_2 = (magenta + yellow)/ (cyan + magenta + yellow)
 
 p_1 * p_2
+
+
+# Conditional probabilities compute the probability that an event occurs given information about dependent events. 
+# For example, the probability of drawing a second king given that the first draw is a king is:
+
+# Pr(Card 2 is a king∣Card 1 is a king)=3/51
+
+# If two events A and B are independent, Pr(A∣B)=Pr(A).
+# To determine the probability of multiple events occurring, we use the multiplication rule
+
+# The multiplication rule for independent events is:
+  
+  # Pr(A and B and C)=Pr(A)×Pr(B)×Pr(C)
+
+
+
+# The multiplication rule for dependent events considers the conditional probability of both events occurring:
+  
+  # Pr(A and B)=Pr(A)×Pr(B∣A)
+
+# We can expand the multiplication rule for dependent events to more than 2 events:
+  
+# Pr(A and B and C)=Pr(A)×Pr(B∣A)×Pr(C∣A and B)
 
   
   
