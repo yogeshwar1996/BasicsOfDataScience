@@ -6,13 +6,17 @@
 
 # Code: Monte Carlo simulation of stick strategy
 
-B <- 10000
+B <- 1000000
 stick <- replicate(B, {
-  doors <- as.character(1:3)
-  prize <- sample(c("car","goat","goat"))    # puts prizes in random order
-  prize_door <- doors[prize == "car"]    # note which door has prize
-  my_pick  <- sample(doors, 1)    # note which door is chosen
+  doors <- as.character(1:3) # Lets assume doors are denoted by nos. 1,2,3
+  random_seq <- sample(c("car","goat","goat"))    # randomises the seq of car goat and goat
+  # print(random_seq)
+  prize_door <- doors[random_seq == "car"]    # save into var the door that has prize
+  # print(prize_door)
+  my_pick  <- sample(doors, 1)    # make a random pick for the doors
+  # print(my_pick)
   show <- sample(doors[!doors %in% c(my_pick, prize_door)],1)    # open door with no prize that isn't chosen
+  # print(show)
   stick <- my_pick    # stick with original door
   stick == prize_door    # test whether the original door has the prize
 })
