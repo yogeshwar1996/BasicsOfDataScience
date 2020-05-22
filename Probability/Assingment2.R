@@ -19,6 +19,45 @@ results = rowSums(possibilities)>=4
 
 mean(results)
 
+# Monte Carlo Simulation
+# The variable `B` specifies the number of times we want the simulation to run. Let's run the Monte Carlo simulation 10,000 times.
+B <- 10000
 
-# Confirm the results of the previous question with a Monte Carlo simulation 
-# to estimate the probability of the Cavs winning the series after losing the first game.
+# Use the `set.seed` function to make sure your answer matches the expected result after random sampling.
+set.seed(1)
+
+# Create an object called `results` that replicates for `B` iterations a simulated series and determines whether that series contains at least four wins for the Cavs.
+results = replicate(B, {
+  # select one out of 0,1 with replacement bcz each event is independendt
+  results_of_6_games = replicate(6,sample(c(0,1), size=1,replace=TRUE))
+  sum(results_of_6_games) >= 4
+})
+
+# Calculate the frequency out of `B` iterations that the Cavs won at least four games in the remainder of the series. Print your answer to the console.
+mean(results)
+
+# Two teams, A and B, are playing a seven series game series. Team A is better than team B and has a p>0.5 chance of winning each game.
+# Show how the prob of B wining varies as prob of A winning keeps increasing from 0.5 to 0.95
+
+# Let's assign the variable 'p' as the vector of probabilities that team A will win.
+# starting from - 0.5 increase by 0.025 till 0.95 is reached
+p <- seq(0.5, 0.95, 0.025)
+# Calculate no. of items in sequence
+length(seq(0.5, 0.95, 0.025))
+# Given a value 'p', the probability of winning the series for the underdog team B can be computed with the following function based on a Monte Carlo simulation:
+prob_win <- function(p){
+  B <- 10000
+  result <- replicate(B, {
+    b_win <- sample(c(1,0), 7, replace = TRUE, prob = c(1-p, p))
+    sum(b_win)>=4
+  })
+  mean(result)
+}
+
+# Apply the 'prob_win' function across the vector of probabilities that team A will win to determine the probability that team B will win. Call this object 'Pr'.
+
+Pr = sapply(p, prob_win)
+
+# Plot the probability 'p' on the x-axis and 'Pr' on the y-axis.
+# This show how prob of B winning changes as prob of a winning goes on increasing
+plot(p, Pr, xlab='Prob. A Win', ylab='Prob. B Wins')
