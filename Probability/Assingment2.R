@@ -61,3 +61,27 @@ Pr = sapply(p, prob_win)
 # Plot the probability 'p' on the x-axis and 'Pr' on the y-axis.
 # This show how prob of B winning changes as prob of a winning goes on increasing
 plot(p, Pr, xlab='Prob. A Win', ylab='Prob. B Wins')
+
+# now keep the probability that team A wins fixed at p <- 0.75 and compute the probability for different series lengths. For example, wins in best of 1 game, 3 games, 5 games, and so on through a series that lasts 25 games.
+# Given a value 'p', the probability of winning the series for the underdog team B can be computed with the following function based on a Monte Carlo simulation:
+prob_win <- function(N, p=0.75){
+  B <- 10000
+  result <- replicate(B, {
+    #result of N games of the series 
+    b_win <- sample(c(1,0), N, replace = TRUE, prob = c(1-p, p))
+    # Won the series of N games if won more than half
+    sum(b_win)>=(N+1)/2
+  })
+  mean(result)
+}
+
+# Assign the variable 'N' as the vector of series lengths. Use only odd numbers ranging from 1 to 25 games.
+N = seq(1, 25, 2)
+
+
+# Apply the 'prob_win' function across the vector of series lengths to determine the probability that team B will win. Call this object `Pr`.
+Pr = sapply(N,prob_win)
+
+# Plot the number of games in the series 'N' on the x-axis and 'Pr' on the y-axis.
+
+plot(N, Pr, xlab="No. of games in series", ylab='Prob(B Wins) given Pr(A Wins)=0.75')
