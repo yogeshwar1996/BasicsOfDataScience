@@ -37,4 +37,11 @@ esoph[(esoph$alcgp=='120+'),4] #select column ncases only, but here you need to 
 
 sum(esoph[(esoph$alcgp=='120+'),]$ncases)/(sum(esoph[(esoph$alcgp=='120+'),]$ncases)+sum(esoph[(esoph$alcgp=='120+'),]$ncontrols))
 
-                                           
+# What is the probability that
+# a subject in the lowest alcohol consumption group is a cancer case?
+# Pr(cancerInGroup0-39alcgp) = (Sum_of_ncases_in_0-39alcgp) / (Total_ncases_in0-39alcgp)
+sum(esoph[(esoph$alcgp=='0-39g/day'),]$ncases)/(sum(esoph[(esoph$alcgp=='0-39g/day'),]$ncases)+sum(esoph[(esoph$alcgp=='0-39g/day'),]$ncontrols))                                           
+
+# Given that a person is a case, what is the probability that they smoke 10g or more a day?
+# Pr = Sum of cases that some at least 10 g) / all_cases
+sum(esoph[(esoph$tobgp!='0-9g/day'),]$ncases)/all_cases
