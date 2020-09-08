@@ -27,5 +27,5 @@ class(z)
 
 # factors are another type of class
 class(murders$region)
-# obtaining the levels of a factor
+# obtaining the levels of a factors
 levels(murders$region)
